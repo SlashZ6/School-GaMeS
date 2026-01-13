@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>GaMeS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;700;900&family=Fredoka:wght@300;400;500;600;700&family=Varela+Round&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --font-latin: 'Varela Round', 'Fredoka', sans-serif;
+        --font-arabic: 'Cairo', sans-serif;
+      }
+      body {
+        background-color: #1e1b4b; /* Indigo 950 */
+        color: #f3f4f6;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      /* Dynamic Font Class */
+      .font-latin { font-family: var(--font-latin); }
+      .font-arabic { font-family: var(--font-arabic); }
+
+      .bubble-scrollbar::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+      }
+      .bubble-scrollbar::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .bubble-scrollbar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 10px;
+      }
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* --- ANIMATIONS --- */
+      .pop-in { animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+      @keyframes popIn { 0% { opacity: 0; transform: scale(0.5); } 100% { opacity: 1; transform: scale(1); } }
+
+      .slide-up { animation: slideUp 0.5s ease-out forwards; }
+      @keyframes slideUp { 0% { opacity: 0; transform: translateY(20px); } 100% { opacity: 1; transform: translateY(0); } }
+
+      .pulse-glow { animation: pulseGlow 2s infinite; }
+      @keyframes pulseGlow {
+        0%, 100% { box-shadow: 0 0 10px rgba(255,255,255,0.1); }
+        50% { box-shadow: 0 0 25px rgba(255,255,255,0.4); transform: scale(1.02); }
+      }
+
+      .floating { animation: float 6s ease-in-out infinite; }
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+      }
+
+      .draw-enter { animation: drawEnter 1s ease-out forwards; }
+      @keyframes drawEnter { 0% { stroke-dasharray: 0 1000; opacity: 0; } 100% { stroke-dasharray: 1000 1000; opacity: 1; } }
+      
+      /* Ambient Background Animation */
+      .bg-blob {
+        position: absolute;
+        filter: blur(80px);
+        z-index: -1;
+        opacity: 0.6;
+        animation: blobMove 20s infinite alternate;
+      }
+      @keyframes blobMove {
+        0% { transform: translate(0, 0) scale(1); }
+        100% { transform: translate(20px, -20px) scale(1.1); }
+      }
+
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0",
+    "canvas-confetti": "https://esm.sh/canvas-confetti@^1.9.4",
+    "tailwind-merge": "https://esm.sh/tailwind-merge@^3.4.0",
+    "clsx": "https://esm.sh/clsx@^2.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
